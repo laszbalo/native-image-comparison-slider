@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Visual Image Comparision</title>
+		<style>
+			* {
+				margin: 0; padding: 0;
+			}
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			img {
+				max-width: 100vw;
+				max-height: 95vh;
+			}
+			
+			#container {
+				position: relative;
+				
+				-webkit-user-select: none;
+				user-select: none;
+			}
+
+			#slider {
+				top: 0;
+				left: 0;
+				max-width: 100%;
+				max-height: 100vh;
+				width: 50%;
+				position: absolute;
+				overflow: hidden;
+				border-right: 1px dashed orange;
+			}
+		</style>
+  </head>
+  <body>
+
+		<div id="container" ondragstart="return false;">
+			<img id="right">
+			<div id="slider">
+				<img id="left">
+			</div>
+		</div>
+		<script>
+			'use strict';
+
+			const imagePaths = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+
+			const slider = document.getElementById('slider');
+			const container = slider.offsetParent;
+			const leftImg = document.getElementById('left');
+			const rightImg = document.getElementById('right');
+			
+			leftImg.src = imagePaths[0];
+			rightImg.src = imagePaths[1];
+
+			let width = slider.offsetWidth;
+
+			document.addEventListener('mousemove', function(e) {
+				const {screenX} = e;
+				
+				if(screenX < container.offsetLeft || screenX > container.offsetLeft+container.offsetWidth) return;
+
+				//const width = screenX - container.offsetLeft;
+				width = screenX - container.offsetLeft;
+				if(width > 0)
+					slider.style.width = width +'px';
+			});
+		</script>
+  </body>
+</html>
