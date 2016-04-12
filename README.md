@@ -1,6 +1,7 @@
 # native-image-comparison-slider
 A cross-platform native image comparison slider. You can visually compare your local images. Can be called from CLI too.
 
+![Showing the app in action.](https://cloud.githubusercontent.com/assets/1551034/14478544/9c1645ca-010e-11e6-8fe8-5795884f0710.png)
 
 ## How To Use
 
